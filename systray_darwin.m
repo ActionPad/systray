@@ -182,7 +182,7 @@
 
 - (void) quit
 {
-  [NSApp stop:self];
+  [NSApp terminate:self];
 }
 
 @end
