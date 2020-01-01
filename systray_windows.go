@@ -80,7 +80,7 @@ func SetIcon(iconBytes []byte) {
 	md5 := md5.Sum(iconBytes)
 	filename := fmt.Sprintf("systray.%x.ico", md5)
 	iconpath := filepath.Join(walk.Resources.RootDirPath(), "icon.ico")
-	icon, err := walk.Icon.NewIconFromFile(iconpath)
+	icon, err := walk.NewIconFromFile(iconpath)
 	// First, try to find a previously loaded icon in walk cache
 	if err != nil {
 		fail("Couldn't load icon.ico")
