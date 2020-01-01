@@ -79,20 +79,11 @@ func quit() {
 func SetIcon(iconBytes []byte) {
 	md5 := md5.Sum(iconBytes)
 	filename := fmt.Sprintf("systray.%x.ico", md5)
-	iconpath := filepath.Join(walk.Resources.RootDirPath(), filename)
+	iconpath := filepath.Join(walk.Resources.RootDirPath(), "icon.ico")
+	icon, err := walk.Icon.NewIconFromFile(iconpath)
 	// First, try to find a previously loaded icon in walk cache
-	icon, err := walk.Resources.Icon(filename)
 	if err != nil {
-		// Cache miss, load the icon
-		err := ioutil.WriteFile(iconpath, iconBytes, 0644)
-		if err != nil {
-			fail("Unable to save icon to disk", err)
-		}
-		defer os.Remove(iconpath)
-		icon, err = walk.Resources.Icon(filename)
-		if err != nil {
-			fail("Unable to load icon", err)
-		}
+		fail("Couldn't load icon.ico")
 	}
 	err = notifyIcon.SetIcon(icon)
 	if err != nil {
