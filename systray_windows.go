@@ -77,7 +77,6 @@ func quit() {
 // iconBytes should be the content of .ico for windows and .ico/.jpg/.png
 // for other platforms.
 func SetIcon(iconBytes []byte) {
-	md5 := md5.Sum(iconBytes)
 	iconpath := filepath.Join(walk.Resources.RootDirPath(), "icon.ico")
 	icon, err := walk.NewIconFromFile(iconpath)
 	// First, try to find a previously loaded icon in walk cache
