@@ -83,7 +83,7 @@ func SetIcon(iconBytes []byte) {
 	icon, err := walk.NewIconFromFile(iconpath)
 	// First, try to find a previously loaded icon in walk cache
 	if err != nil {
-		fail("Couldn't load icon.ico")
+		fail("Couldn't load icon.ico", err)
 	}
 	err = notifyIcon.SetIcon(icon)
 	if err != nil {
